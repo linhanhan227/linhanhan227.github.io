@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多巴胺 · 功能</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fff3e0 0%, #ffe6f0 100%);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* 主标题 — 干脆利落 */
+    h1 {
+      font-size: 3.8rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #ff006e, #ff9e00, #3a86ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      text-shadow: 6px 6px 0 rgba(255, 190, 11, 0.3);
+    }
+
+    /* 副标题 — 极简 */
+    .sub {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #2b2b3a;
+      background: #ffd100;
+      display: inline-block;
+      padding: 8px 32px;
+      border-radius: 60px;
+      border: 4px solid white;
+      box-shadow: 8px 8px 0 #f72585;
+      margin-bottom: 50px;
+    }
+
+    /* 功能网格 — 只展示功能 */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 30px;
+      margin: 40px 0 50px;
+    }
+
+    .feature-card {
+      background: #ffb700;
+      border-radius: 40px;
+      padding: 40px 20px 30px;
+      border: 5px solid white;
+      box-shadow: 12px 12px 0 #ff006e, 0 20px 25px -10px rgba(0,0,0,0.3);
+      transition: transform 0.15s ease;
+    }
+
+    /* 每个卡片不同多巴胺配色 */
+    .feature-card:nth-child(1) { background: #ffb700; box-shadow: 12px 12px 0 #ff006e; }
+    .feature-card:nth-child(2) { background: #00d4ff; box-shadow: 12px 12px 0 #8338ec; }
+    .feature-card:nth-child(3) { background: #ff7b00; box-shadow: 12px 12px 0 #3a86ff; }
+    .feature-card:nth-child(4) { background: #ccff33; box-shadow: 12px 12px 0 #f72585; }
+
+    .feature-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 16px 16px 0 #ff006e;
+    }
+
+    .feature-emoji {
+      font-size: 4.5rem;
+      line-height: 1;
+      margin-bottom: 15px;
+      filter: drop-shadow(6px 8px 0 white);
+    }
+
+    .feature-card h3 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: white;
+      display: inline-block;
+      padding: 4px 24px;
+      border-radius: 60px;
+      border: 4px solid #1e1e2a;
+      margin-bottom: 20px;
+      color: #1a1a2a;
+    }
+
+    .feature-card p {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1e1e2a;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(2px);
+      padding: 14px 12px;
+      border-radius: 30px;
+      border: 3px dashed #001d3d;
+    }
+
+    /* 唯一的下载按钮 — 显眼、干脆 */
+    .download-btn {
+      background: #ff006e;
+      border: 5px solid #ffd100;
+      color: white;
+      font-size: 2.8rem;
+      font-weight: 800;
+      padding: 20px 80px;
+      border-radius: 120px;
+      box-shadow: 0 18px 0 #9d0043, 0 30px 30px -10px #3a0ca3;
+      cursor: pointer;
+      transition: 0.08s linear;
+      display: inline-block;
+      margin: 20px 0 10px;
+      border: none;
+      border-bottom: 8px solid #9d0043;
+    }
+
+    .download-btn:active {
+      transform: translateY(10px);
+      box-shadow: 0 8px 0 #9d0043, 0 30px 30px -10px #3a0ca3;
+    }
+
+    /* 没有任何公司信息，只有一句极简口号（可选，但不算公司元素） */
+    .tiny-note {
+      font-size: 1.2rem;
+      color: #4a4a60;
+      margin-top: 30px;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.8rem; }
+      .sub { font-size: 1.2rem; padding: 6px 20px; }
+      .download-btn { font-size: 2rem; padding: 16px 40px; }
+      .feature-card h3 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 标题区 — 无公司信息，只有产品名和简洁描述 -->
+    <h1>🌈 DopaChat</h1>
+    <div class="sub">就三个字：快 · 彩 · 聊</div>
+
+    <!-- 纯功能展示区 — 四个核心功能 -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-emoji">⚡</div>
+        <h3>极速</h3>
+        <p>一秒进入房间，无需加载</p >
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">🌈</div>
+        <h3>多彩</h3>
+        <p>百万配色气泡/背景</p >
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">👥</div>
+        <h3>百人</h3>
+        <p>超大群组，实时畅聊</p >
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">🔊</div>
+        <h3>语音</h3>
+        <p>高质通话，动态变声</p >
+      </div>
+    </div>
+
+    <!-- 唯一的一个下载按钮 -->
+    <button class="download-btn" onclick="alert('下载 DopaChat App ～')">⬇️ 下载</button>
+
+    <!-- 极简脚注 — 无任何公司信息，仅一句氛围语 -->
+    <div class="tiny-note">
+      ✨ 纯聊天 · 纯快乐 ✨
+    </div>
+  </div>
+</body>
+</html>

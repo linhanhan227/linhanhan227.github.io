@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>暖屿论坛 · 精简可爱风</title>
+    <title>暖屿小栈 · 治愈一刻</title>
     <!-- Google Fonts 圆润可爱字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (免费图标库，仅作视觉装饰，无链接) -->
+    <!-- Font Awesome 6 (仅视觉装饰) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -20,6 +20,10 @@
             background: linear-gradient(145deg, #fffaf5 0%, #fff5f0 100%);
             color: #4a4a4a;
             line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         /* 容器 */
@@ -29,39 +33,17 @@
             padding: 0 28px;
         }
 
-        /* 简单头部 - 只有logo，无导航栏 */
-        .simple-header {
-            padding: 32px 0 20px;
-            text-align: center;
-            border-bottom: 2px solid #ffe2d4;
-            background-color: rgba(255, 250, 245, 0.6);
-        }
-
-        .logo {
-            display: inline-flex;
+        /* 主区域：让内容垂直居中但保留顶部呼吸空间 */
+        .main-content {
+            flex: 1;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #f2a07e;
-            letter-spacing: -0.5px;
+            justify-content: center;
+            padding: 40px 0;
         }
 
-        .logo i {
-            font-size: 2.2rem;
-            filter: drop-shadow(2px 2px 6px rgba(242, 160, 126, 0.2));
-        }
-
-        .logo span {
-            background: linear-gradient(135deg, #f9b28c, #f28b6c);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        /* Hero 区域 */
+        /* Hero 区域 - 只保留标题与动画卡片，移除badge和描述 */
         .hero {
-            padding: 70px 0 100px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
@@ -72,26 +54,16 @@
         .hero-content {
             flex: 1;
             min-width: 260px;
+            text-align: left;
         }
 
-        .hero-content .badge {
-            background: #fff0e7;
-            display: inline-block;
-            padding: 6px 18px;
-            border-radius: 60px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #f28b6c;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
+        /* 主标题样式 - 保留原本可爱风格 */
         .hero-content h1 {
             font-size: 3.2rem;
             font-weight: 700;
             line-height: 1.2;
             color: #5e3e2e;
-            margin-bottom: 18px;
+            margin: 0;
         }
 
         .hero-content h1 span {
@@ -101,22 +73,15 @@
             color: transparent;
         }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            color: #7f6b60;
-            margin-bottom: 32px;
-            max-width: 480px;
-        }
-
         .hero-image {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             min-width: 260px;
-            position: relative;
         }
 
+        /* 动画卡片 — 完全保留原有效果 */
         .cuddle-card {
             background: #ffece3;
             width: 280px;
@@ -152,12 +117,11 @@
             100% { transform: translateY(0px); }
         }
 
-        /* 页脚 */
+        /* 页脚 — 完全保留原有风格 */
         footer {
             padding: 40px 0 30px;
             text-align: center;
             border-top: 2px solid #ffe2d4;
-            margin-top: 20px;
             color: #b28872;
             font-size: 0.9rem;
         }
@@ -166,19 +130,24 @@
             color: #ff8a62;
         }
 
-        /* 响应式 */
+        /* 响应式调整：小屏幕时标题居中，卡片在上方 */
         @media (max-width: 780px) {
             .hero {
                 flex-direction: column-reverse;
                 text-align: center;
-                padding: 40px 0 70px;
+            }
+            .hero-content {
+                text-align: center;
             }
             .hero-content h1 {
                 font-size: 2.5rem;
             }
+            .main-content {
+                padding: 30px 0;
+            }
         }
 
-        /* 装饰小元素 */
+        /* 装饰小点缀 — 保留氛围感（可选，不算标题/动画/页脚，但不影响主体） */
         .deco-dot {
             position: fixed;
             bottom: 20px;
@@ -192,33 +161,20 @@
 </head>
 <body>
 
-<!-- 可爱漂浮小点缀 (纯装饰) -->
+<!-- 可爱漂浮小点缀 (纯装饰，无功能) -->
 <div class="deco-dot">
     ✨🐾
 </div>
 
-<!-- 简单头部，仅logo，无导航栏、无按钮 -->
-<div class="simple-header">
-    <div class="container">
-        <div class="logo">
-            <i class="fas fa-cat"></i>
-            <span>暖屿·Kawaii</span>
-        </div>
-    </div>
-</div>
-
-<main>
-    <!-- Hero 区域 - 无按钮 -->
+<!-- 主要内容区：仅包含标题与动画卡片 -->
+<div class="main-content">
     <div class="container">
         <div class="hero">
+            <!-- 左侧：只有主标题，无badge、无描述文字 -->
             <div class="hero-content">
-                <div class="badge">
-                    <i class="fas fa-star-of-life"></i> 全新可爱灵感
-                </div>
                 <h1>让每一天都 <span>软软萌萌</span><br>简单又美好</h1>
-                <p>精简设计，温暖陪伴。我们用治愈系的创意与贴心的服务，为你打造会呼吸的可爱数字体验。</p>
-                <!-- 无任何按钮 -->
             </div>
+            <!-- 右侧：动画卡片完全保留 -->
             <div class="hero-image">
                 <div class="cuddle-card">
                     <i class="fas fa-paw"></i>
@@ -227,9 +183,9 @@
             </div>
         </div>
     </div>
-    <!-- 已移除“软萌”及以下所有区块（特色、团队成员、寄语区、联系区），只保留页脚 -->
-</main>
+</div>
 
+<!-- 页脚区域：完全保留原有内容 -->
 <footer>
     <div class="container">
         <p>© 2025 暖屿·Kawaii Studio  |  用❤️和🐾编织的可爱角落  |  <span class="footer-heart">✦ 精简设计 ✦</span></p>

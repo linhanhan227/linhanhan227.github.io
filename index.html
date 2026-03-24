@@ -26,14 +26,12 @@
             justify-content: space-between;
         }
 
-        /* 容器 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 28px;
         }
 
-        /* 主区域：让内容垂直居中但保留顶部呼吸空间 */
         .main-content {
             flex: 1;
             display: flex;
@@ -42,7 +40,6 @@
             padding: 40px 0;
         }
 
-        /* Hero 区域 - 只保留标题与动画卡片，移除badge和描述 */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -57,7 +54,7 @@
             text-align: left;
         }
 
-        /* 主标题样式 - 保留原本可爱风格 */
+        /* 主标题 - 无任何上方多余元素 */
         .hero-content h1 {
             font-size: 3.2rem;
             font-weight: 700;
@@ -81,7 +78,7 @@
             min-width: 260px;
         }
 
-        /* 动画卡片 — 完全保留原有效果 */
+        /* 动画卡片 - 保持治愈浮游感 */
         .cuddle-card {
             background: #ffece3;
             width: 280px;
@@ -93,12 +90,14 @@
             justify-content: center;
             box-shadow: 20px 22px 30px rgba(242, 139, 108, 0.15);
             animation: float 4s ease-in-out infinite;
+            transition: transform 0.2s ease;
         }
 
         .cuddle-card i {
             font-size: 6rem;
             color: #f7a17b;
             margin-bottom: 16px;
+            filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.05));
         }
 
         .cuddle-card .cute-text {
@@ -109,6 +108,7 @@
             font-size: 1rem;
             color: #f28b6c;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            letter-spacing: 1px;
         }
 
         @keyframes float {
@@ -117,7 +117,6 @@
             100% { transform: translateY(0px); }
         }
 
-        /* 页脚 — 完全保留原有风格 */
         footer {
             padding: 40px 0 30px;
             text-align: center;
@@ -130,7 +129,7 @@
             color: #ff8a62;
         }
 
-        /* 响应式调整：小屏幕时标题居中，卡片在上方 */
+        /* 响应式调整：小屏幕时卡片在上，标题居中 */
         @media (max-width: 780px) {
             .hero {
                 flex-direction: column-reverse;
@@ -145,40 +144,31 @@
             .main-content {
                 padding: 30px 0;
             }
-        }
-
-        /* 装饰小点缀 — 保留氛围感（可选，不算标题/动画/页脚，但不影响主体） */
-        .deco-dot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            opacity: 0.5;
-            pointer-events: none;
-            font-size: 2rem;
-            z-index: 99;
+            .cuddle-card {
+                width: 260px;
+                height: 260px;
+            }
+            .cuddle-card i {
+                font-size: 5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- 可爱漂浮小点缀 (纯装饰，无功能) -->
-<div class="deco-dot">
-    ✨🐾
-</div>
-
-<!-- 主要内容区：仅包含标题与动画卡片 -->
+<!-- 主要内容区：仅包含标题与动画卡片，标题上方无任何多余元素 -->
 <div class="main-content">
     <div class="container">
         <div class="hero">
-            <!-- 左侧：只有主标题，无badge、无描述文字 -->
+            <!-- 左侧：纯粹的主标题，无装饰文字、无badge、无任何多余代码 -->
             <div class="hero-content">
                 <h1>让每一天都 <span>软软萌萌</span><br>简单又美好</h1>
             </div>
-            
+           
     </div>
 </div>
 
-<!-- 页脚区域：完全保留原有内容 -->
+<!-- 页脚区域：保留温暖基调 -->
 <footer>
     <div class="container">
         <p>© 2025 暖屿·Kawaii Studio  |  用❤️和🐾编织的可爱角落  |  <span class="footer-heart">✦ 精简设计 ✦</span></p>

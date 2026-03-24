@@ -1,649 +1,241 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>涟漪·轻论坛 | 自在表达 纯粹讨论</title>
-  <style>
-    /* RESET + 基础氛围 — 延续原有配色，完全不动色值 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>暖屿论坛 · 精简可爱风</title>
+    <!-- Google Fonts 圆润可爱字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (免费图标库，仅作视觉装饰，无链接) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: #fef7e8;
-      background-image: radial-gradient(circle at 25% 40%, rgba(255, 215, 150, 0.2) 2%, transparent 2.5%),
-                        radial-gradient(circle at 70% 85%, rgba(255, 180, 100, 0.18) 1.8%, transparent 2%);
-      background-size: 48px 48px, 36px 36px;
-      font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-      color: #221c12;
-      line-height: 1.4;
-      scroll-behavior: smooth;
-    }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(145deg, #fffaf5 0%, #fff5f0 100%);
+            color: #4a4a4a;
+            line-height: 1.5;
+        }
 
-    /* 主容器 — 故意不对称留白，更像人手工排版 */
-    .site-wrap {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 2rem 1.8rem 4rem;
-      position: relative;
-    }
+        /* 容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
 
-    /* 手绘感装饰线 — 去AI化符号，保留原汁原味 */
-    .doodle-line {
-      position: absolute;
-      top: 120px;
-      left: 5%;
-      width: 160px;
-      height: 160px;
-      pointer-events: none;
-      opacity: 0.4;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="none" stroke="%23f4a261" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 8" d="M20 70 Q 50 30, 85 55 T 150 40 M10 130 Q 40 160, 80 145 T 145 170"/><circle cx="160" cy="45" r="6" fill="%23e76f51" opacity="0.6"/><circle cx="30" cy="140" r="4" fill="%23e9c46a"/></svg>') no-repeat;
-      background-size: contain;
-    }
+        /* 简单头部 - 只有logo，无导航栏 */
+        .simple-header {
+            padding: 32px 0 20px;
+            text-align: center;
+            border-bottom: 2px solid #ffe2d4;
+            background-color: rgba(255, 250, 245, 0.6);
+        }
 
-    .doodle-line2 {
-      position: absolute;
-      bottom: 100px;
-      right: 3%;
-      width: 200px;
-      height: 200px;
-      pointer-events: none;
-      opacity: 0.3;
-      transform: rotate(10deg);
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240"><polyline points="30,190 70,140 120,170 180,120 210,150" stroke="%23bc6c25" fill="none" stroke-width="4" stroke-linecap="round" stroke-dasharray="5 7"/><path d="M50 210 L90 190 L120 205" stroke="%23d4a373" fill="none" stroke-width="3"/><circle cx="190" cy="100" r="8" fill="%23f4a261" opacity="0.5"/></svg>') no-repeat;
-      background-size: contain;
-    }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f2a07e;
+            letter-spacing: -0.5px;
+        }
 
-    /* 头部 — 无导航栏，只有一个很个性的logo区 */
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 2rem;
-      margin-bottom: 5rem;
-      position: relative;
-    }
+        .logo i {
+            font-size: 2.2rem;
+            filter: drop-shadow(2px 2px 6px rgba(242, 160, 126, 0.2));
+        }
 
-    .brand-block {
-      flex: 1.2;
-      min-width: 260px;
-    }
+        .logo span {
+            background: linear-gradient(135deg, #f9b28c, #f28b6c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-    .brand-name {
-      font-size: 4.5rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      background: linear-gradient(125deg, #2c1e12, #c45117);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: 3px 3px 0 rgba(248, 168, 75, 0.2);
-      display: inline-block;
-      border-bottom: 6px dotted #f3aa60;
-      margin-bottom: 0.75rem;
-    }
+        /* Hero 区域 */
+        .hero {
+            padding: 70px 0 100px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
 
-    .tagline {
-      font-size: 1.5rem;
-      font-weight: 550;
-      color: #6b3e1c;
-      background: #ffe1b9;
-      display: inline-block;
-      padding: 0.2rem 1.2rem;
-      border-radius: 100px;
-      margin-top: 12px;
-      letter-spacing: -0.2px;
-      box-shadow: 3px 3px 0 #ce9f6e;
-      transform: rotate(-1deg);
-    }
+        .hero-content {
+            flex: 1;
+            min-width: 260px;
+        }
 
-    .hero-desc {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      max-width: 440px;
-      background: rgba(255, 245, 225, 0.7);
-      padding: 1rem 1.4rem;
-      border-left: 8px solid #f4a261;
-      color: #3e2a1f;
-      font-weight: 480;
-      line-height: 1.5;
-    }
+        .hero-content .badge {
+            background: #fff0e7;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #f28b6c;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
 
-    /* 论坛预览区 — 从聊天风格改为热门帖子风格，配色一致 */
-    .forum-preview {
-      flex: 1;
-      min-width: 280px;
-      background: #ffffffdd;
-      backdrop-filter: blur(2px);
-      border-radius: 48px 32px 64px 32px;
-      padding: 1.6rem;
-      box-shadow: 20px 20px 0 #f2c48d, 0 12px 24px rgba(0,0,0,0.08);
-      border: 2px solid #fae3b3;
-      transition: all 0.2s ease;
-    }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #5e3e2e;
+            margin-bottom: 18px;
+        }
 
-    .preview-header {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      border-bottom: 3px dotted #ffcd94;
-      padding-bottom: 12px;
-      margin-bottom: 18px;
-      font-weight: 700;
-    }
-    .room-badge {
-      background: #fb8b67;
-      color: white;
-      padding: 6px 16px;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .member-count {
-      font-size: 0.85rem;
-      color: #b45f2b;
-      background: #fff0dd;
-      padding: 4px 12px;
-      border-radius: 50px;
-    }
+        .hero-content h1 span {
+            background: linear-gradient(135deg, #f9b08c, #f27954);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-    /* 论坛帖子列表样式 — 沿用温暖配色 */
-    .thread-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-    .thread-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      padding: 0.6rem 0;
-      border-bottom: 2px dashed #ffe0bb;
-      transition: all 0.1s ease;
-      cursor: pointer;
-    }
-    .thread-avatar {
-      background: #f4d1a4;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 1.3rem;
-      box-shadow: 2px 3px 0 #c27e4a;
-      flex-shrink: 0;
-    }
-    .thread-content {
-      flex: 1;
-    }
-    .thread-title {
-      font-weight: 800;
-      font-size: 1.05rem;
-      color: #4b2e18;
-      margin-bottom: 6px;
-      line-height: 1.3;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-    .thread-title a {
-      text-decoration: none;
-      color: #bb672f;
-    }
-    .thread-meta {
-      font-size: 0.7rem;
-      color: #b27d4a;
-      display: flex;
-      gap: 16px;
-      margin-top: 6px;
-    }
-    .thread-stats {
-      background: #fae6cf;
-      padding: 2px 8px;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #9c5d2c;
-    }
-    .thread-excerpt {
-      font-size: 0.85rem;
-      color: #6a4a2c;
-      margin-top: 4px;
-      display: block;
-      line-height: 1.4;
-    }
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #7f6b60;
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
 
-    /* 功能卡片区 保持原样式名，只改内部文字和图标 */
-    .features-section {
-      margin: 6rem 0 5rem;
-      position: relative;
-    }
-    .section-eyebrow {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-weight: 700;
-      color: #cc7b3e;
-      background: #ffe2bf;
-      display: inline-block;
-      padding: 0.3rem 1rem;
-      border-radius: 30px;
-      margin-bottom: 2rem;
-    }
-    .feature-mosaic {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: space-between;
-    }
-    .feat-item {
-      background: #fffaf2;
-      flex: 1 1 220px;
-      padding: 2rem 1.5rem;
-      border-radius: 45px 25px 55px 25px;
-      transition: all 0.2s;
-      border: 2px solid #f5cf9b;
-      box-shadow: 8px 10px 0 #e2bc85;
-    }
-    .feat-item:nth-child(1) { transform: rotate(-0.8deg); background: #fef3e0; border-radius: 60px 30px 60px 30px; }
-    .feat-item:nth-child(2) { transform: rotate(0.6deg); background: #fff5e8; box-shadow: 10px 12px 0 #dba668; margin-top: 1rem; }
-    .feat-item:nth-child(3) { transform: rotate(-0.3deg); background: #fff0df; border-radius: 35px 55px 35px 55px; }
-    .feat-item:nth-child(4) { transform: rotate(0.4deg); background: #fdecd7; box-shadow: 6px 8px 0 #e2b77c; margin-bottom: 0.5rem;}
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 260px;
+            position: relative;
+        }
 
-    .feat-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      display: inline-block;
-      background: #fbdba9;
-      padding: 0.3rem 0.6rem;
-      border-radius: 30px;
-      line-height: 1;
-      transform: rotate(-3deg);
-    }
-    .feat-item h3 {
-      font-size: 1.9rem;
-      font-weight: 800;
-      color: #7b431b;
-      margin: 0.8rem 0 0.5rem;
-      border-left: 5px solid #f59e4b;
-      padding-left: 12px;
-    }
-    .feat-item p {
-      color: #5a3f28;
-      font-weight: 500;
-      font-size: 1rem;
-      margin-top: 0.5rem;
-      line-height: 1.4;
-    }
+        .cuddle-card {
+            background: #ffece3;
+            width: 280px;
+            height: 280px;
+            border-radius: 72% 28% 68% 32% / 32% 58% 42% 68%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 20px 22px 30px rgba(242, 139, 108, 0.15);
+            animation: float 4s ease-in-out infinite;
+        }
 
-    /* 论坛实时数据 banner */
-    .live-banner {
-      background: #2c241a;
-      padding: 1.2rem 2rem;
-      border-radius: 120px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin: 3rem 0 4rem;
-      box-shadow: 0 15px 20px -12px rgba(0,0,0,0.2);
-      border: 1px solid #dfb176;
-    }
-    .live-text {
-      font-weight: 700;
-      color: #ffdeaa;
-      font-size: 1.25rem;
-      letter-spacing: -0.2px;
-    }
-    .live-text span {
-      background: #dd834b;
-      padding: 4px 12px;
-      border-radius: 60px;
-      color: #1f1a12;
-      margin-left: 10px;
-    }
-    .pulse-dot {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      background: #7ed957;
-      border-radius: 50%;
-      margin-right: 8px;
-      box-shadow: 0 0 0 0 #7ed957;
-      animation: pulse 1.6s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(0.95); opacity: 1; box-shadow: 0 0 0 0 #7ed957aa; }
-      70% { transform: scale(1.1); opacity: 0.8; box-shadow: 0 0 0 8px #7ed95700; }
-      100% { transform: scale(0.95); opacity: 1; }
-    }
+        .cuddle-card i {
+            font-size: 6rem;
+            color: #f7a17b;
+            margin-bottom: 16px;
+        }
 
-    /* 下载/开启区 */
-    .download-zone {
-      text-align: center;
-      margin: 2rem 0 3rem;
-      position: relative;
-    }
-    .download-btn-custom {
-      background: #ff8c42;
-      border: none;
-      font-size: 2.4rem;
-      font-weight: 800;
-      padding: 1rem 2.8rem;
-      border-radius: 80px;
-      color: white;
-      cursor: pointer;
-      transition: 0.07s linear;
-      box-shadow: 0 12px 0 #9b4a1a;
-      letter-spacing: -0.5px;
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      font-family: inherit;
-    }
-    .download-btn-custom:active {
-      transform: translateY(6px);
-      box-shadow: 0 6px 0 #9b4a1a;
-    }
-    .small-note {
-      margin-top: 1.2rem;
-      font-size: 0.9rem;
-      color: #926d46;
-      background: #fff1e2;
-      display: inline-block;
-      padding: 0.3rem 1.4rem;
-      border-radius: 50px;
-      font-weight: 500;
-    }
+        .cuddle-card .cute-text {
+            font-weight: 700;
+            background: white;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 1rem;
+            color: #f28b6c;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
 
-    /* 手工脚注 — 无公司信息 */
-    .footer-handmade {
-      margin-top: 5rem;
-      padding-top: 2rem;
-      border-top: 4px dashed #f5cf9b;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #aa7c54;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .footer-handmade span {
-      background: #ffe5cd;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-    }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
 
-    /* 响应式 — 保留手工感 */
-    @media (max-width: 850px) {
-      .hero {
-        flex-direction: column;
-      }
-      .brand-name {
-        font-size: 3rem;
-      }
-      .tagline {
-        font-size: 1.2rem;
-      }
-      .feature-mosaic {
-        gap: 1.2rem;
-      }
-      .download-btn-custom {
-        font-size: 1.8rem;
-        padding: 0.8rem 2rem;
-      }
-      .feat-item h3 {
-        font-size: 1.6rem;
-      }
-      .live-banner {
-        border-radius: 48px;
-        justify-content: center;
-        text-align: center;
-      }
-    }
-    @media (max-width: 550px) {
-      .site-wrap {
-        padding: 1.2rem;
-      }
-      .forum-preview {
-        padding: 1rem;
-      }
-      .thread-title {
-        font-size: 0.9rem;
-      }
-    }
+        /* 页脚 */
+        footer {
+            padding: 40px 0 30px;
+            text-align: center;
+            border-top: 2px solid #ffe2d4;
+            margin-top: 20px;
+            color: #b28872;
+            font-size: 0.9rem;
+        }
 
-    .feat-item:hover {
-      transform: translate(-3px, -3px) rotate(0deg) !important;
-      box-shadow: 12px 14px 0 #c18944;
-      transition: 0.12s;
-    }
-    button {
-      cursor: pointer;
-    }
-  </style>
+        .footer-heart {
+            color: #ff8a62;
+        }
+
+        /* 响应式 */
+        @media (max-width: 780px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 40px 0 70px;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* 装饰小元素 */
+        .deco-dot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.5;
+            pointer-events: none;
+            font-size: 2rem;
+            z-index: 99;
+        }
+    </style>
 </head>
 <body>
-<div class="site-wrap">
-  <div class="doodle-line"></div>
-  <div class="doodle-line2"></div>
 
-  <!-- HERO 轻论坛头部 -->
-  <div class="hero">
-    <div class="brand-block">
-      <div class="brand-name">涟漪 · 轻谈</div>
-      <div class="tagline"># 自在表达 · 轻量论坛</div>
-      <div class="hero-desc">
-        🍃 没有推荐算法，只有真实的讨论。<br>
-        像风吹过水面，涟漪轻漾 —— 回归本真的线上聚落。
-      </div>
-    </div>
-
-    <!-- 论坛预览: 最新热帖板块 -->
-    <div class="forum-preview">
-      <div class="preview-header">
-        <div class="room-badge">📖 最新热帖 · 今日热议</div>
-        <div class="member-count">🔥 237人正在围观</div>
-      </div>
-      <div class="thread-list">
-        <div class="thread-item" data-thread="1">
-          <div class="thread-avatar">📷</div>
-          <div class="thread-content">
-            <div class="thread-title">
-              <span>📌 胶片摄影与数码时代，我们还在怀念什么？</span>
-              <span class="thread-stats">24回复 · 189阅读</span>
-            </div>
-            <div class="thread-excerpt">“每次按下快门都像一场仪式，胶片的不确定性反而让记忆更珍贵…”</div>
-            <div class="thread-meta">👤 暗房学徒 · 2小时前 · 🗨️ 最后回复 橘右京</div>
-          </div>
-        </div>
-        <div class="thread-item" data-thread="2">
-          <div class="thread-avatar">🌿</div>
-          <div class="thread-content">
-            <div class="thread-title">
-              <span>🌱 小城书店地图｜分享你私藏的独立书店</span>
-              <span class="thread-stats">42回复 · 453阅读</span>
-            </div>
-            <div class="thread-excerpt">“成都的读本屋、南京的先锋、还有巷子里的无名小铺…”</div>
-            <div class="thread-meta">👤 散步阿野 · 昨天 · 🗨️ 最后回复 书虫老李</div>
-          </div>
-        </div>
-        <div class="thread-item" data-thread="3">
-          <div class="thread-avatar">💻</div>
-          <div class="thread-content">
-            <div class="thread-title">
-              <span>⚡ 轻论坛开发日记｜我们为什么放弃复杂框架</span>
-              <span class="thread-stats">67回复 · 1.2k阅读</span>
-            </div>
-            <div class="thread-excerpt">“让写帖子像发推一样简单，但又保留深度讨论的土壤…”</div>
-            <div class="thread-meta">👤 独行侠 · 昨天 · 🗨️ 最后回复 代码流浪者</div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top: 18px; font-size: 0.7rem; text-align: right; color:#cf9f6e;">✨ 新讨论不断刷新 · 加入聊几句</div>
-    </div>
-  </div>
-
-  <!-- 轻论坛特色区域 沿用四个卡片但主题变为论坛功能 -->
-  <div class="features-section">
-    <div class="section-eyebrow">● 不止是论坛 · 更是栖息地 ●</div>
-    <div class="feature-mosaic">
-      <div class="feat-item">
-        <div class="feat-icon">📝🌀</div>
-        <h3>轻羽发帖</h3>
-        <p>极简编辑器，Markdown / 传图即拖拽，帖子像呼吸一样自然。</p>
-      </div>
-      <div class="feat-item">
-        <div class="feat-icon">🏷️✨</div>
-        <h3>话题星系</h3>
-        <p>自定义标签 + 热门话题榜，精准找到同频讨论圈。</p>
-      </div>
-      <div class="feat-item">
-        <div class="feat-icon">🌱🕊️</div>
-        <h3>慢互动</h3>
-        <p>没有点赞焦虑，长评置顶、温和社区氛围，让每句话被尊重。</p>
-      </div>
-      <div class="feat-item">
-        <div class="feat-icon">🧩⚙️</div>
-        <h3>开源自洽</h3>
-        <p>可自建节点、轻量管理，版主轮换制度，活人共建秩序。</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 论坛实时活跃动态 和热门趋势 -->
-  <div class="live-banner">
-    <div class="live-text">
-      <span class="pulse-dot"></span> 🌊 今日活跃指数：<span>新帖 142 · 回帖 896</span>
-    </div>
-    <div class="live-text">
-      🎧 热门标签: #独立音乐 #骑行日志 #城市漫游 #工具控
-    </div>
-  </div>
-
-  <!-- 开启轻论坛主按钮 -->
-  <div class="download-zone">
-    <button class="download-btn-custom" id="startForumBtn">
-      🍃 开启 · 轻论坛
-    </button>
-    <div class="small-note">
-      网页版即开即用 · 无广告 · 纯净写作与讨论
-    </div>
-  </div>
-
-  <!-- 手工脚注，无任何公司痕迹 -->
-  <div class="footer-handmade">
-    <span>✨ 轻量 · 真诚 · 共居一隅 ✨</span>
-    <span>📡 论坛公约：友善讨论 保持好奇</span>
-    <span>🕊️ 版本 3.0 · 涟漪之谈</span>
-  </div>
+<!-- 可爱漂浮小点缀 (纯装饰) -->
+<div class="deco-dot">
+    ✨🐾
 </div>
 
-<script>
-  // 轻论坛交互 —— 去AI化趣味提示 + 模拟点击帖子的反馈
-  const startBtn = document.getElementById('startForumBtn');
-  if(startBtn) {
-    startBtn.addEventListener('click', function(e) {
-      const messages = [
-        '🍃 涟漪轻论坛，等你来织网~ 模拟跳转至发现页面',
-        '📖 纯净讨论之地，没有机器人，只有真实灵魂',
-        '🌱 欢迎成为新坛友，第一个帖子写什么？',
-        '✨ 你的表达欲，值得一个温柔角落',
-        '🎉 轻论坛已张开怀抱，发帖 / 回帖随你心意'
-      ];
-      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-      alert(randomMsg + '\n（演示版，真实站点即将开放）');
-      startBtn.style.transform = 'scale(0.98)';
-      setTimeout(() => { startBtn.style.transform = ''; }, 120);
-    });
-  }
+<!-- 简单头部，仅logo，无导航栏、无按钮 -->
+<div class="simple-header">
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-cat"></i>
+            <span>暖屿·Kawaii</span>
+        </div>
+    </div>
+</div>
 
-  // 为帖子添加点击效果，展示类似“戳一戳”
-  const threads = document.querySelectorAll('.thread-item');
-  if(threads.length) {
-    threads.forEach(thread => {
-      thread.addEventListener('click', (e) => {
-        const titleElem = thread.querySelector('.thread-title span:first-child');
-        let titleText = '这个帖子';
-        if(titleElem) titleText = titleElem.innerText.slice(0, 28);
-        const toastMsg = document.createElement('div');
-        toastMsg.innerText = `📌 你戳了一下：“${titleText}” · 去看看讨论吧 👀`;
-        toastMsg.style.position = 'fixed';
-        toastMsg.style.bottom = '30px';
-        toastMsg.style.left = '30px';
-        toastMsg.style.backgroundColor = '#fff2e2';
-        toastMsg.style.padding = '8px 20px';
-        toastMsg.style.borderRadius = '60px';
-        toastMsg.style.fontSize = '0.85rem';
-        toastMsg.style.fontWeight = 'bold';
-        toastMsg.style.border = '2px solid #f5bc70';
-        toastMsg.style.color = '#754e28';
-        toastMsg.style.zIndex = '999';
-        toastMsg.style.boxShadow = '6px 6px 0px #ca9461';
-        toastMsg.style.backdropFilter = 'blur(4px)';
-        document.body.appendChild(toastMsg);
-        setTimeout(() => { toastMsg.remove(); }, 2000);
-        e.stopPropagation();
-      });
-    });
-  }
+<main>
+    <!-- Hero 区域 - 无按钮 -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="badge">
+                    <i class="fas fa-star-of-life"></i> 全新可爱灵感
+                </div>
+                <h1>让每一天都 <span>软软萌萌</span><br>简单又美好</h1>
+                <p>精简设计，温暖陪伴。我们用治愈系的创意与贴心的服务，为你打造会呼吸的可爱数字体验。</p>
+                <!-- 无任何按钮 -->
+            </div>
+            <div class="hero-image">
+                <div class="cuddle-card">
+                    <i class="fas fa-paw"></i>
+                    <div class="cute-text">♡ 今日好心情 ♡</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 已移除“软萌”及以下所有区块（特色、团队成员、寄语区、联系区），只保留页脚 -->
+</main>
 
-  // 动态模拟“刚刚有人发帖”小彩蛋 — 论坛预览区悬浮效果
-  const previewPanel = document.querySelector('.forum-preview');
-  if(previewPanel) {
-    let removeTimer;
-    previewPanel.addEventListener('mouseenter', () => {
-      const dynamicNote = document.createElement('div');
-      dynamicNote.className = 'live-update-tip';
-      dynamicNote.innerText = '🌿 新回帖: “胶片群近期有扫街活动！”';
-      dynamicNote.style.fontSize = '0.7rem';
-      dynamicNote.style.backgroundColor = '#ffe6cf';
-      dynamicNote.style.padding = '5px 12px';
-      dynamicNote.style.borderRadius = '50px';
-      dynamicNote.style.marginTop = '12px';
-      dynamicNote.style.color = '#b96229';
-      dynamicNote.style.textAlign = 'center';
-      dynamicNote.style.fontWeight = '500';
-      const existTip = previewPanel.querySelector('.live-update-tip');
-      if(existTip) existTip.remove();
-      previewPanel.appendChild(dynamicNote);
-      if(removeTimer) clearTimeout(removeTimer);
-      removeTimer = setTimeout(() => {
-        if(dynamicNote && dynamicNote.remove) dynamicNote.remove();
-      }, 2800);
-    });
-    previewPanel.addEventListener('mouseleave', () => {
-      const existTip = previewPanel.querySelector('.live-update-tip');
-      if(existTip) existTip.remove();
-      if(removeTimer) clearTimeout(removeTimer);
-    });
-  }
+<footer>
+    <div class="container">
+        <p>© 2025 暖屿·Kawaii Studio  |  用❤️和🐾编织的可爱角落  |  <span class="footer-heart">✦ 精简设计 ✦</span></p>
+        <p style="margin-top: 12px; font-size: 0.8rem;">✨ 保持纯真，保持可爱 ✨</p>
+    </div>
+</footer>
 
-  // 随机轻量标语彩蛋，点击tagline变一下，延续手工人味
-  const tag = document.querySelector('.tagline');
-  if(tag) {
-    tag.style.cursor = 'pointer';
-    tag.addEventListener('click', () => {
-      const forumMottos = ['# 轻论坛 · 不打扰的交流', '# 涟漪轻谈 思辨有温度', '# 小而美 慢而真', '# 今日宜逛坛 宜分享'];
-      const newMotto = forumMottos[Math.floor(Math.random() * forumMottos.length)];
-      const original = '# 自在表达 · 轻量论坛';
-      tag.textContent = newMotto;
-      setTimeout(() => {
-        tag.textContent = original;
-      }, 1800);
-    });
-  }
-</script>
 </body>
 </html>

@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>暖屿小栈 · 治愈一刻</title>
-    <!-- Google Fonts 圆润可爱字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (仅视觉装饰) -->
+    <title>轻论坛 · 极简·纯粹</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -16,165 +14,253 @@
         }
 
         body {
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(145deg, #fffaf5 0%, #fff5f0 100%);
-            color: #4a4a4a;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #ffffff;
+            color: #1e293b;
             line-height: 1.5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1120px;
             margin: 0 auto;
             padding: 0 28px;
         }
 
-        .main-content {
-            flex: 1;
+        /* 导航栏 - 仅保留Logo */
+        .navbar {
             display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 40px 0;
+            padding: 24px 0;
+            border-bottom: 1px solid #f0f2f5;
         }
-
-        .hero {
+        .logo {
             display: flex;
-            flex-wrap: wrap;
             align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-        }
-
-        .hero-content {
-            flex: 1;
-            min-width: 260px;
-            text-align: left;
-        }
-
-        /* 主标题 - 无任何上方多余元素 */
-        .hero-content h1 {
-            font-size: 3.2rem;
+            gap: 8px;
+            font-size: 1.6rem;
             font-weight: 700;
-            line-height: 1.2;
-            color: #5e3e2e;
-            margin: 0;
+            letter-spacing: -0.3px;
+            color: #0f172a;
+            text-decoration: none;
+        }
+        .logo i {
+            color: #3b82f6;
+            font-size: 1.7rem;
         }
 
-        .hero-content h1 span {
-            background: linear-gradient(135deg, #f9b08c, #f27954);
+        /* 英雄区 - 简约有力 */
+        .hero {
+            padding: 70px 0 50px;
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        .hero-badge {
+            background: #eef2ff;
+            color: #1e40af;
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 28px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #0f172a, #2d3a6e);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            margin-bottom: 20px;
         }
-
-        .hero-image {
-            flex: 1;
+        .hero p {
+            font-size: 1.2rem;
+            color: #475569;
+            margin-bottom: 32px;
+        }
+        .hero-buttons {
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-width: 260px;
+            gap: 16px;
+            flex-wrap: wrap;
         }
-
-        /* 动画卡片 - 保持治愈浮游感 */
-        .cuddle-card {
-            background: #ffece3;
-            width: 280px;
-            height: 280px;
-            border-radius: 72% 28% 68% 32% / 32% 58% 42% 68%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 20px 22px 30px rgba(242, 139, 108, 0.15);
-            animation: float 4s ease-in-out infinite;
-            transition: transform 0.2s ease;
-        }
-
-        .cuddle-card i {
-            font-size: 6rem;
-            color: #f7a17b;
-            margin-bottom: 16px;
-            filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.05));
-        }
-
-        .cuddle-card .cute-text {
-            font-weight: 700;
-            background: white;
-            padding: 6px 18px;
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 28px;
             border-radius: 40px;
+            font-weight: 500;
             font-size: 1rem;
-            color: #f28b6c;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            border: 1px solid #d1d9e8;
+            background: transparent;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover {
+            border-color: #3b82f6;
+            background: #f5f9ff;
+            color: #2563eb;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
+        /* 特性卡片 - 精简三列 */
+        .features {
+            margin: 40px 0 80px;
         }
-
-        footer {
-            padding: 40px 0 30px;
+        .section-title {
             text-align: center;
-            border-top: 2px solid #ffe2d4;
-            color: #b28872;
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 48px 0 12px;
+        }
+        .section-desc {
+            text-align: center;
+            color: #5b6b8c;
+            margin-bottom: 48px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 32px;
+        }
+        .feature-card {
+            background: #fafcff;
+            border-radius: 28px;
+            padding: 28px 20px;
+            text-align: center;
+            border: 1px solid #edf2f7;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .feature-card:hover {
+            border-color: #cbdffc;
+            box-shadow: 0 12px 20px -12px rgba(0,0,0,0.05);
+        }
+        .feature-icon {
+            font-size: 2.4rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: #5c6b8c;
             font-size: 0.9rem;
         }
 
-        .footer-heart {
-            color: #ff8a62;
-        }
-
-        /* 响应式调整：小屏幕时卡片在上，标题居中 */
-        @media (max-width: 780px) {
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 2.2rem;
             }
-            .hero-content {
-                text-align: center;
+            .hero p {
+                font-size: 1rem;
             }
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .main-content {
-                padding: 30px 0;
-            }
-            .cuddle-card {
-                width: 260px;
-                height: 260px;
-            }
-            .cuddle-card i {
-                font-size: 5rem;
+            .navbar {
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- 主要内容区：仅包含标题与动画卡片，标题上方无任何多余元素 -->
-<div class="main-content">
-    <div class="container">
-        <div class="hero">
-            <!-- 左侧：纯粹的主标题，无装饰文字、无badge、无任何多余代码 -->
-            <div class="hero-content">
-                <h1>让每一天都 <span>软软萌萌</span><br>简单又美好</h1>
+<div class="container">
+    <!-- 极简导航：仅保留Logo -->
+    <nav class="navbar">
+        <a href="#" class="logo" id="logoLink">
+            <i class="fas fa-comment-dots"></i>
+            <span>轻论坛</span>
+        </a>
+    </nav>
+
+    <!-- 英雄区 -->
+    <div class="hero">
+        <div class="hero-badge"><i class="fas fa-feather-alt"></i> 极轻 · 极速</div>
+        <h1>轻论坛<br>为纯粹交流而生</h1>
+        <p>不冗余，不复杂。开箱即用的现代化社区引擎，<br>让每个想法都能轻松抵达。</p>
+        <div class="hero-buttons">
+            <button class="btn-primary" id="startHero">免费搭建社区</button>
+            <button class="btn-outline" id="demoHero">查看演示</button>
+        </div>
+    </div>
+
+    <!-- 三大特性 -->
+    <div class="features">
+        <div class="section-title">简洁，但足够强大</div>
+        <div class="section-desc">核心功能聚焦沟通本质，去除冗余干扰</div>
+        <div class="grid-3">
+            <div class="feature-card" data-feature="毫秒级响应">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h3>毫秒级响应</h3>
+                <p>轻量架构，资源占用减少60%，访问丝滑流畅</p>
             </div>
-           
+            <div class="feature-card" data-feature="简约主题">
+                <div class="feature-icon"><i class="fas fa-palette"></i></div>
+                <h3>简约主题</h3>
+                <p>内置多款极简皮肤，一键切换，专注内容本身</p>
+            </div>
+            <div class="feature-card" data-feature="安全守护">
+                <div class="feature-icon"><i class="fas fa-shield-heart"></i></div>
+                <h3>安全守护</h3>
+                <p>智能风控 + 数据加密，纯净社区氛围</p>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- 页脚区域：保留温暖基调 -->
-<footer>
-    <div class="container">
-        <p>© 2025 暖屿·Kawaii Studio  |  用❤️和🐾编织的可爱角落  |  <span class="footer-heart">✦ 精简设计 ✦</span></p>
-        <p style="margin-top: 12px; font-size: 0.8rem;">✨ 保持纯真，保持可爱 ✨</p>
-    </div>
-</footer>
+<script>
+    // 简洁交互提示
+    function showMsg(msg) {
+        alert(`✨ 轻论坛 · ${msg}`);
+    }
 
+    // Logo 点击演示
+    const logoLink = document.getElementById('logoLink');
+    if (logoLink) {
+        logoLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showMsg('轻论坛 · 回归纯粹交流');
+        });
+    }
+
+    // 按钮事件
+    const startBtn = document.getElementById('startHero');
+    const demoBtn = document.getElementById('demoHero');
+
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            showMsg('立即创建您的轻论坛社区，极速搭建');
+        });
+    }
+    if (demoBtn) {
+        demoBtn.addEventListener('click', () => {
+            showMsg('演示模式即将上线，可先浏览官网');
+        });
+    }
+
+    // 特性卡片点击
+    const cards = document.querySelectorAll('.feature-card');
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.querySelector('h3')?.innerText || '功能';
+            showMsg(`「${title}」更多详情即将发布`);
+        });
+    });
+</script>
 </body>
 </html>

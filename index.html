@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -26,12 +27,15 @@
             padding: 0 28px;
         }
 
-        /* 导航栏 - 仅保留Logo */
+        /* 导航栏 - 左侧Logo + 右侧菜单项（极简风） */
         .navbar {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
             padding: 24px 0;
             border-bottom: 1px solid #f0f2f5;
+            flex-wrap: wrap;
+            gap: 16px;
         }
         .logo {
             display: flex;
@@ -42,10 +46,41 @@
             letter-spacing: -0.3px;
             color: #0f172a;
             text-decoration: none;
+            transition: opacity 0.2s;
         }
         .logo i {
             color: #3b82f6;
             font-size: 1.7rem;
+        }
+        .logo:hover {
+            opacity: 0.85;
+        }
+        /* API 文档菜单项样式 - 简洁优雅 */
+        .nav-api {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #334155;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 40px;
+            transition: all 0.2s ease;
+            background: transparent;
+            letter-spacing: -0.2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-api i {
+            font-size: 0.9rem;
+            color: #5b6b8c;
+            transition: color 0.2s;
+        }
+        .nav-api:hover {
+            background: #f1f5f9;
+            color: #2563eb;
+        }
+        .nav-api:hover i {
+            color: #3b82f6;
         }
 
         /* 英雄区 - 简约有力 */
@@ -96,10 +131,14 @@
             font-size: 1rem;
             cursor: pointer;
             transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
         .btn-primary:hover {
             background: #1d4ed8;
             transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(37,99,235,0.2);
         }
         .btn-outline {
             border: 1px solid #d1d9e8;
@@ -110,6 +149,9 @@
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
         .btn-outline:hover {
             border-color: #3b82f6;
@@ -149,6 +191,7 @@
         .feature-card:hover {
             border-color: #cbdffc;
             box-shadow: 0 12px 20px -12px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
         }
         .feature-icon {
             font-size: 2.4rem;
@@ -172,7 +215,25 @@
                 font-size: 1rem;
             }
             .navbar {
-                justify-content: center;
+                padding: 18px 0;
+            }
+            .logo {
+                font-size: 1.4rem;
+            }
+            .nav-api {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+            .hero {
+                padding: 40px 0 30px;
+            }
+            .btn-primary, .btn-outline {
+                padding: 8px 22px;
             }
         }
     </style>
@@ -180,11 +241,15 @@
 <body>
 
 <div class="container">
-    <!-- 极简导航：仅保留Logo -->
+    <!-- 极简导航：左侧 Logo + 右侧 API 文档菜单项 -->
     <nav class="navbar">
         <a href="#" class="logo" id="logoLink">
             <i class="fas fa-comment-dots"></i>
             <span>轻论坛</span>
+        </a>
+        <!-- 新增 API 文档菜单项，点击跳转至指定链接 -->
+        <a href="https://www.islots.me/api.html" class="nav-api" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-code"></i> API文档
         </a>
     </nav>
 
@@ -194,8 +259,10 @@
         <h1>轻论坛<br>为纯粹交流而生</h1>
         <p>不冗余，不复杂。开箱即用的现代化社区引擎，<br>让每个想法都能轻松抵达。</p>
         <div class="hero-buttons">
-            <button class="btn-primary" id="startHero">免费搭建社区</button>
-            <button class="btn-outline" id="demoHero">查看演示</button>
+            <!-- 免费搭建社区按钮：跳转至 GitHub 仓库 -->
+            <button class="btn-primary" id="startHero"><i class="fab fa-github"></i> 免费搭建社区</button>
+            <!-- 查看演示按钮：跳转至演示站点 -->
+            <button class="btn-outline" id="demoHero"><i class="fas fa-eye"></i> 查看演示</button>
         </div>
     </div>
 
@@ -224,12 +291,14 @@
 </div>
 
 <script>
-    // 简洁交互提示
+    // 简洁提示辅助函数（保留原有卡片提示风格，但不干扰主要跳转）
     function showMsg(msg) {
         alert(`✨ 轻论坛 · ${msg}`);
     }
 
-    // Logo 点击演示
+    // ========================
+    // 1. Logo 点击交互（保持原有轻松风格）
+    // ========================
     const logoLink = document.getElementById('logoLink');
     if (logoLink) {
         logoLink.addEventListener('click', (e) => {
@@ -238,22 +307,30 @@
         });
     }
 
-    // 按钮事件
+    // ========================
+    // 2. 核心跳转逻辑: 免费搭建社区 → GitHub 仓库
+    //    查看演示 → https://www.islots.me/
+    // ========================
     const startBtn = document.getElementById('startHero');
     const demoBtn = document.getElementById('demoHero');
 
     if (startBtn) {
         startBtn.addEventListener('click', () => {
-            showMsg('立即创建您的轻论坛社区，极速搭建');
-        });
-    }
-    if (demoBtn) {
-        demoBtn.addEventListener('click', () => {
-            showMsg('演示模式即将上线，可先浏览官网');
+            // 跳转至免费搭建社区（GitHub 仓库）
+            window.open('https://github.com/linhanhan227/bbs', '_blank', 'noopener,noreferrer');
         });
     }
 
-    // 特性卡片点击
+    if (demoBtn) {
+        demoBtn.addEventListener('click', () => {
+            // 跳转至演示站点
+            window.open('https://www.islots.me/', '_blank', 'noopener,noreferrer');
+        });
+    }
+
+    // ========================
+    // 3. 特性卡片点击提示（保留原有趣味交互，不影响主体跳转）
+    // ========================
     const cards = document.querySelectorAll('.feature-card');
     cards.forEach(card => {
         card.addEventListener('click', () => {
@@ -261,6 +338,17 @@
             showMsg(`「${title}」更多详情即将发布`);
         });
     });
+
+    // 小细节：为 API 文档链接增加额外的平滑体验（原生支持跳转，无需额外干预）
+    // 同时确保所有外部链接安全性
+    const apiLink = document.querySelector('.nav-api');
+    if (apiLink) {
+        // 已具备 target="_blank" 和 rel 属性，无需额外动作，但确保无事件冲突
+        apiLink.addEventListener('click', (e) => {
+            // 允许默认跳转，不做额外拦截，但保留安全属性
+            // 纯粹的跳转行为，已经满足需求
+        });
+    }
 </script>
 </body>
 </html>
